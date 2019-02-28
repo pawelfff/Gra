@@ -2,6 +2,7 @@ package pl.martiego;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Postac {
     public Postac(JPanel pojemnik) {
@@ -12,8 +13,19 @@ public class Postac {
         return postac;
     }
 
+    public void go(int key) {
+        if(key == KeyEvent.VK_RIGHT)
+            goRight();
+        else if(key == KeyEvent.VK_LEFT)
+            goLeft();
+        else if(key == KeyEvent.VK_UP)
+            goUp();
+        else if(key == KeyEvent.VK_DOWN)
+            goDown();
+    }
+
     //Sterowanie ;p easy
-    public void goRight() {
+    private void goRight() {
         if(pojemnik.getBounds().getMaxX() - xPostaci <= x) {
             x = (int)pojemnik.getBounds().getMaxX() - xPostaci;
         }
@@ -25,7 +37,7 @@ public class Postac {
 
     }
 
-    public void goLeft() {
+    private void goLeft() {
         if(pojemnik.getBounds().getMinX() >= x) {
             x = 0;
         }
@@ -34,7 +46,7 @@ public class Postac {
         }
     }
 
-    public void goUp() {
+    private void goUp() {
         if(pojemnik.getBounds().getMinY() >= y) {
             y = 0;
         }
@@ -43,7 +55,7 @@ public class Postac {
         }
     }
 
-    public void goDown() {
+    private void goDown() {
         if(pojemnik.getBounds().getMaxY() - yPostaci <= y) {
             y = (int)pojemnik.getBounds().getMaxY() - yPostaci;
         }
