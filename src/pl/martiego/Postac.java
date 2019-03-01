@@ -5,6 +5,20 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Postac {
+
+    private Image postac = (Image)image();
+
+    private int x = 50;
+    private int y = 50;
+
+    private int dx = 10;
+    private int dy = 10;
+
+    private int xPostaci = postac.getWidth(null);
+    private int yPostaci = postac.getHeight(null);
+
+    private JPanel pojemnik;
+
     public Postac(JPanel pojemnik) {
         this.pojemnik = pojemnik;
     }
@@ -24,7 +38,6 @@ public class Postac {
             goDown();
     }
 
-    //Sterowanie ;p easy
     private void goRight() {
         if(pojemnik.getBounds().getMaxX() - xPostaci <= x) {
             x = (int)pojemnik.getBounds().getMaxX() - xPostaci;
@@ -70,16 +83,19 @@ public class Postac {
         return new ImageIcon(imgURL).getImage();
     }
 
-    public Image postac = (Image)image();
+    public int getX() {
+        return x;
+    }
 
-    int x = 50;
-    int y = 50;
+    public void setX(int x) {
+        this.x = x;
+    }
 
-    private int dx = 10;
-    private int dy = 10;
+    public int getY() {
+        return y;
+    }
 
-    int xPostaci = postac.getWidth(null);
-    int yPostaci = postac.getHeight(null);
-
-    JPanel pojemnik;
+    public void setY(int y) {
+        this.y = y;
+    }
 }

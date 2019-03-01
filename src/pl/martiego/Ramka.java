@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ramka extends JFrame {
     private Ramka.PanelAnimacji panelAnimacji = new Ramka.PanelAnimacji();
@@ -11,12 +13,17 @@ public class Ramka extends JFrame {
     private int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     private int height = Toolkit.getDefaultToolkit().getScreenSize().height;
 
+    private List<Przeciwnik> listaPrzeciwnikow;
+
     public Ramka() {
         this.setTitle("Gra");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setBounds(width / 4,height / 4,width / 2,height / 2);
 
         this.setResizable(false);
+        listaPrzeciwnikow = new ArrayList<>();
+        for (int i = 0; i < 5; i++)
+            listaPrzeciwnikow.add(new Przeciwnik());
 
         panelAnimacji.setBackground(Color.gray);
         this.getContentPane().add(panelAnimacji);
@@ -30,8 +37,8 @@ public class Ramka extends JFrame {
 
             start.addKeyListener(this);
             start.addActionListener(e -> {
-                postac.x = 50;
-                postac.y = 50;
+                postac.setX(50);
+                postac.setY(50);
                 watek = new Thread(new PostacRunnable(postac));
                 watek.start();
             });
@@ -41,8 +48,10 @@ public class Ramka extends JFrame {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(postac.getImage(), postac.x, postac.y, null);
-            //g.drawRect(100,100,100,100);
+            g.drawImage(postac.getImage(), postac.getX(), postac.getY(), null);
+            for (Przeciwnik p : listaPrzeciwnikow) {
+                g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+            }
         }
 
         Thread watek;
