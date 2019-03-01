@@ -6,10 +6,13 @@ import java.util.Random;
 
 public class Przeciwnik {
 
-    public Image postac = (Image)image();
+    private Image postac = (Image)image();
 
     private int x = 50;
     private int y = 50;
+
+    private int xPostaci = postac.getWidth(null);
+    private int yPostaci = postac.getHeight(null);
 
     public Przeciwnik() {
         Random random = new Random();
@@ -42,5 +45,21 @@ public class Przeciwnik {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getxPostaci() {
+        return xPostaci;
+    }
+
+    public void setxPostaci(int xPostaci) {
+        this.xPostaci = xPostaci;
+    }
+
+    public int getyPostaci() {
+        return yPostaci;
+    }
+
+    public void setyPostaci(int yPostaci) {
+        this.yPostaci = yPostaci;
     }
 }

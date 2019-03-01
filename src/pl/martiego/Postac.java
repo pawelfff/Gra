@@ -98,4 +98,20 @@ public class Postac {
     public void setY(int y) {
         this.y = y;
     }
+
+    public int getxPostaci() {
+        return xPostaci;
+    }
+
+    public void setxPostaci(int xPostaci) {
+        this.xPostaci = xPostaci;
+    }
+
+    public int getyPostaci() {
+        return yPostaci;
+    }
+
+    public void setyPostaci(int yPostaci) {
+        this.yPostaci = yPostaci;
+    }
 }

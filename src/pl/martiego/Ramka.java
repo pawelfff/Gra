@@ -30,19 +30,23 @@ public class Ramka extends JFrame {
 
     }
 
+
     public class PanelAnimacji extends JPanel implements KeyListener {
         public PanelAnimacji() {
             JButton start = new JButton("start");
             postac = new Postac(this);
 
             start.addKeyListener(this);
+
             start.addActionListener(e -> {
                 postac.setX(50);
                 postac.setY(50);
                 watek = new Thread(new PostacRunnable(postac));
                 watek.start();
+
             });
             this.add(start ,BorderLayout.SOUTH);
+
         }
 
         @Override
@@ -64,12 +68,26 @@ public class Ramka extends JFrame {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            postac.go(e.getKeyCode());
+            if(e.getKeyCode() == KeyEvent.VK_SPACE)
+                compare();
+            else
+                postac.go(e.getKeyCode());
         }
 
         @Override
         public void keyReleased(KeyEvent e) {
 
+        }
+
+
+        private void compare() {
+            for (Przeciwnik p : listaPrzeciwnikow) {
+                if( p.getX() >= postac.getX() && (p.getX() + p.getxPostaci()) <= (postac.getX() + postac.getxPostaci()) &&
+                    p.getY() >= postac.getY() && (p.getY() + p.getyPostaci()) <= (postac.getY() + postac.getyPostaci()) ){
+                    listaPrzeciwnikow.remove(p);
+                    break;
+                }
+            }
         }
 
         public class PostacRunnable implements Runnable {
@@ -93,4 +111,6 @@ public class Ramka extends JFrame {
             Postac postac;
         }
     }
+
+
 }
