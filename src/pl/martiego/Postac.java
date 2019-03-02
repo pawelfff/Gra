@@ -11,6 +11,9 @@ public class Postac {
     private int x = 50;
     private int y = 50;
 
+    public int zdrowie = 100;
+    public int atak = 50;
+
     private int dx = 10;
     private int dy = 10;
 
@@ -18,6 +21,19 @@ public class Postac {
     private int yPostaci = postac.getHeight(null);
 
     private JPanel pojemnik;
+
+    public void levelup ()
+    {
+        zdrowie = zdrowie + 20;
+        atak = atak + 10 ;
+
+    }
+    public int atak (int zdrowie)
+    {
+
+        zdrowie = zdrowie - atak;
+     return zdrowie;
+    }
 
     public Postac(JPanel pojemnik) {
         this.pojemnik = pojemnik;
@@ -83,6 +99,8 @@ public class Postac {
         return new ImageIcon(imgURL).getImage();
     }
 
+
+
     public int getX() {
         return x;
     }
@@ -113,5 +131,11 @@ public class Postac {
 
     public void setyPostaci(int yPostaci) {
         this.yPostaci = yPostaci;
+    }
+    public void zdrowiePostac (int zdrowie)
+    {
+        this.zdrowie = zdrowie;
+
+
     }
 }

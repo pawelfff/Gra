@@ -8,8 +8,13 @@ public class Przeciwnik {
 
     private Image postac = (Image)image();
 
+    public int zdrowie = 100;
+    public int atak = 10;
+
+
     private int x = 50;
     private int y = 50;
+
 
     private int xPostaci = postac.getWidth(null);
     private int yPostaci = postac.getHeight(null);
@@ -27,6 +32,20 @@ public class Przeciwnik {
         return new ImageIcon(imgURL).getImage();
     }
 
+    public void atak (int zdrowie)
+    {
+
+        try
+        {
+            zdrowie = zdrowie - atak;
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException e)
+        {
+        }
+
+    }
+
     public Image getImage() {
         return postac;
     }
@@ -39,9 +58,7 @@ public class Przeciwnik {
         this.x = x;
     }
 
-    public int getY() {
-        return y;
-    }
+    public int getY() { return y; }
 
     public void setY(int y) {
         this.y = y;
@@ -62,4 +79,6 @@ public class Przeciwnik {
     public void setyPostaci(int yPostaci) {
         this.yPostaci = yPostaci;
     }
+
+    public void zdrowie (int zdrowie) { this.zdrowie= zdrowie; }
 }

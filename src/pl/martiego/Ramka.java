@@ -28,6 +28,7 @@ public class Ramka extends JFrame {
         panelAnimacji.setBackground(Color.gray);
         this.getContentPane().add(panelAnimacji);
 
+
     }
 
 
@@ -69,6 +70,7 @@ public class Ramka extends JFrame {
         @Override
         public void keyPressed(KeyEvent e) {
             if(e.getKeyCode() == KeyEvent.VK_SPACE)
+
                 compare();
             else
                 postac.go(e.getKeyCode());
@@ -82,14 +84,24 @@ public class Ramka extends JFrame {
 
         private void compare() {
             for (Przeciwnik p : listaPrzeciwnikow) {
-                if( p.getX() >= postac.getX() && (p.getX() + p.getxPostaci()) <= (postac.getX() + postac.getxPostaci()) &&
-                    p.getY() >= postac.getY() && (p.getY() + p.getyPostaci()) <= (postac.getY() + postac.getyPostaci()) ){
-                    listaPrzeciwnikow.remove(p);
-                    break;
-                }
-            }
-        }
+                if ((p.getX() >= postac.getX() && (p.getX() + p.getxPostaci()) <= (postac.getX() + postac.getxPostaci()) &&
+                        p.getY() >= postac.getY() && (p.getY() + p.getyPostaci()) <= (postac.getY() + postac.getyPostaci())) )
+                {
+                    p.zdrowie(postac.atak(p.zdrowie));
+                    if (p.zdrowie <= 0)
+                    {
+                        postac.levelup();
+                        listaPrzeciwnikow.remove(p);
+                        break;
 
+                    }
+                }
+
+            }
+
+
+
+        }
         public class PostacRunnable implements Runnable {
             public PostacRunnable(Postac postac) {
                 this.postac = postac;
